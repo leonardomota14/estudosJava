@@ -3,6 +3,8 @@ package br.com.leonardo.fila;
 import java.util.LinkedList;
 import java.util.List;
 
+import br.com.leonardo.pessoa.Pessoa;
+
 public class Fila<T> {
 	private List<T> object = new LinkedList<T>(); 
 	
@@ -35,6 +37,26 @@ public class Fila<T> {
 	
 	public boolean vazia(){		
 		return this.object.size()==0;
+	}
+	
+	public String toString(){
+		if(this.vazia()){
+			throw new IllegalArgumentException("Fila está vazia!");			
+		}
+		
+		StringBuilder strbuider = new StringBuilder();
+		Pessoa pessoa;
+		strbuider.append("[");
+		for(int i=0; i<this.object.size()-1;i++){
+			pessoa = (Pessoa) this.object.get(i);
+			strbuider.append(pessoa.getNome());
+			strbuider.append(", "); 
+		}
+		pessoa = (Pessoa) this.object.get(this.object.size()-1);
+		strbuider.append(pessoa.getNome());
+		strbuider.append("]");
+		
+		return strbuider.toString();
 	}
 	
 }
